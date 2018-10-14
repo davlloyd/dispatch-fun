@@ -3,6 +3,8 @@
 # Install base images for Python and nodejs
 
 # Install images
+- vmomi image is for vsphere functions
+- request module added to nodejs for slack
 
 dispatch create base-image python3-base dispatchframework/python3-base --language python3
 dispatch create image python3 python3-base
@@ -12,7 +14,14 @@ dispatch create base-image nodejs-base dispatchframework/nodejs-base --language 
 dispatch create image nodejs nodejs-base
 dispatch create image nodejs-request nodejs-base --runtime-deps ./package.json
 
-# Define driver
+# Create access secret
+dispatch create -f 1-secret-vsphere-pks.yaml
+dispatch create -f 2-secret-slack.yaml
+
+
+# Define driver for vcenter
+dispatch create -f 3-drivertype-vcenter.yaml
+dispatch create -f 4-driver-vcenter-pks.yaml
 
 
 
@@ -20,7 +29,7 @@ dispatch create image nodejs-request nodejs-base --runtime-deps ./package.json
 dispatch create eventdrivertype vcenter dispatchframework/dispatch-events-vcenter
 dispatch create eventdriver vcenter --name pks-vcenter --secret 
 
-# Create access secret
+
 
 cat << EOF > vcenter.json
 {
