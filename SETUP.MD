@@ -14,6 +14,9 @@ dispatch create image nodejs-request nodejs-base --runtime-deps ./package.json
 
 # Define driver
 
+
+
+
 dispatch create eventdrivertype vcenter dispatchframework/dispatch-events-vcenter
 dispatch create eventdriver vcenter --name pks-vcenter --secret 
 
