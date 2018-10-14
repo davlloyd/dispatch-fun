@@ -1,0 +1,21 @@
+ingress:
+  serviceType: LoadBalancer
+apiGateway:
+  host: 10.0.0.1
+  serviceType: LoadBalancer
+dispatch:
+  host: 10.0.0.1
+  port: 443
+  debug: true
+  skipAuth: true
+#  eventTransport: kafka
+#  faas: riff
+  imageRegistry:
+#    insecure: true
+    name: davlloyd
+    username: davlloyd
+    password: B3ach8um!
+#dockerRegistry:
+#  chart:
+#    version: 1.5.1
+ 

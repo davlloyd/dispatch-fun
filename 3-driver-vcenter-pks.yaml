@@ -1,0 +1,8 @@
+kind: Driver
+name: vcenter-pks
+type: vcenter
+secrets:
+  - vsphere-pks
+tags:
+  - key: location
+    value: DSC

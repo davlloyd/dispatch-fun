@@ -1,0 +1,87 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  finalizers:
+  - kubernetes.io/pvc-protection
+  labels:
+    app: kafka
+    release: transport
+  name: datadir-transport-kafka-0
+  namespace: dispatch
+  annotations:
+    volume.beta.kubernetes.io/storage-class: ci-storage
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+  storageClassName: ci-storage
+
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  finalizers:
+  - kubernetes.io/pvc-protection
+  labels:
+    app: kafka
+    release: transport
+  name: datadir-transport-kafka-1
+  namespace: dispatch
+  annotations:
+    volume.beta.kubernetes.io/storage-class: ci-storage
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+  storageClassName: ci-storage
+
+--- 
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  finalizers:
+  - kubernetes.io/pvc-protection
+  labels:
+    app: kafka
+    release: transport
+  name: datadir-transport-kafka-2
+  namespace: dispatch
+  annotations:
+    volume.beta.kubernetes.io/storage-class: ci-storage
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+  storageClassName: ci-storage
+
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  finalizers:
+  - kubernetes.io/pvc-protection
+  labels:
+    app: kafka
+    release: transport
+  name: datadir-transport-kafka-3
+  namespace: dispatch
+  annotations:
+    volume.beta.kubernetes.io/storage-class: ci-storage
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+  storageClassName: ci-storage
+
+

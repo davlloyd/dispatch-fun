@@ -1,0 +1,8 @@
+kind: DriverType
+image: dispatchframework/dispatch-events-vcenter
+expose: false
+name: vcenter
+tags:
+  - key: location
+    value: DSC
+    
