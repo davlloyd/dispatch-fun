@@ -29,7 +29,7 @@ dispatch create -f 4-driver-vcenter-pks.yaml
 dispatch create function --image=nodejs-request slack-post-vm-message functions/slack-post-vm-general --handler=./slack_vm_general.js
 dispatch create function --image=nodejs-request slack-post-vm-deploy-message functions/slack-post-deploy-vm --handler=./slack_vm_being_deployed.js
 dispatch create function --image=python-vmomi clonevm functions/clonevm --handler=clonevm.handle --secret vsphere-pks
-dispatch create function --image=python-request slack-post-vm functions/slack-post-deploy-vm --handler=slack-post-deploy-vm.handle --secret slack
+dispatch create function --image=python-request slack-post-vm functions/slack-post-deploy-vm --handler=slack_post.handle --secret slack
 
 
 # Subscribe to the vm events
