@@ -9,7 +9,7 @@
 dispatch create base-image python3-base dispatchframework/python3-base --language python3
 dispatch create image python3 python3-base
 dispatch create image python-vmomi python3-base --runtime-deps ./requirements-vmomi.txt
-dispatch create image python-request python3-base --runtime-deps ./requirements-request.txt
+dispatch create image python-request python3-base --runtime-deps ./requirements-requests.txt
 
 dispatch create base-image nodejs-base dispatchframework/nodejs-base --language nodejs
 dispatch create image nodejs nodejs-base
