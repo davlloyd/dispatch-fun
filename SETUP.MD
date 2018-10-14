@@ -23,33 +23,21 @@ dispatch create -f 2-secret-slack.yaml
 dispatch create -f 3-drivertype-vcenter.yaml
 dispatch create -f 4-driver-vcenter-pks.yaml
 
+# Create functions for slack posts
+
+dispatch create function --image=nodejs-request slack-post-vm-message functions/slack-post-vm-general --handler=./slack_vm_general.js
+dispatch create function --image=nodejs-request slack-post-vm-deploy-message functions/slack-post-deploy-vm --handler=./slack_vm_being_deployed.js
+dispatch create function --image=python-vmomi clonevm function/clonevm --handler=clonevm.handle --secret vsphere-pks
 
 
-
-dispatch create eventdrivertype vcenter dispatchframework/dispatch-events-vcenter
-dispatch create eventdriver vcenter --name pks-vcenter --secret 
-
-
-
-cat << EOF > vcenter.json
-{
-  "vcenterurl": "pksservice:password@sydscvvpksvc01.syddsc.local",
-  "insecure": "true"
-}
-EOF
-dispatch create secret vcenter ./vcenter.json
-
-# Create event driver to capture vcenter events
+# Subscribe to the vm events
+dispatch create subscription --name vmCreatedSlack --event-type vm.being.created slack-post-vm-message --secret slack
+dispatch create subscription --name vmCloneSlack --event-type vm.clone slack-post-vm-message  --secret slack
+dispatch create subscription --name vmPoweredOnSlack --event-type vm.poweredon slack-post-vm-message --secret slack
+dispatch create subscription --name vmPoweredOffSlack --event-type vm.poweredoff slack-post-vm-message --secret slack
+dispatch create subscription --name vmDeployedSlack --event-type vm.being.deployed slack-post-vm-deploy-message --secret slack
 
 
-#option above did not work
-
-dispatch create event-driver vcenter --name sydscvvpksvc01 --set vcenterurl='pksservice:password@sydscvvpksvc01.syddsc.local:443'
-
-
-# Subscribe to the vm create event 
-
-dispatch create subscription --event-type vm.being.created vmCreate --name vmCreateEvent
 
 
 curl -X POST -H 'Content-type: application/json' --data '{"text":"Hello, World!"}' https://hooks.slack.com/services/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
