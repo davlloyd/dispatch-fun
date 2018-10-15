@@ -33,7 +33,7 @@ dispatch create function --image=python-request git-vmrequest functions/git-vmre
 # Publish the cloneVM and Git-Request API
 
 dispatch create api --https-only --method POST --path /clonevm post-clonevm clonevm
-dispatch create api --https-only --method POST --path /git-requestvm post-gitvm git-vmrequest
+dispatch create api --https-only --method POST --path /git-vmrequest post-gitvm git-vmrequest
 
 # Subscribe to the vm events
 
@@ -49,6 +49,8 @@ dispatch create subscription --name vmCloneSlack --event-type vm.clone slack-pos
 
 dispatch exec clonevm --wait --input='{"host": "sydscvvpksvc01.syddsc.local","name": "test-008","template": "ubuntu-1604-template"}' --secret vsphere-pks
 
+dispatch exec git-vmrequest --wait --input='{"hook_id": "test001"}' --secret vsphere-pks
+
 
 # Test Slack Webhook
 
@@ -60,5 +62,5 @@ curl -X POST -H 'Content-type: application/json' --data '{"text":"Hello, World!"
 curl -k "https://jump.wwko2018.com:8443/dispatch/hello" -H "Content-Type: application/json" -d '{"name": "Jon", "place": "winterfell"}'
 
 
-
+curl -X POST -k "https://jump.wwko2018.com:8443/dispatch/git-requestvm" -H "Content-Type: application/json" -d '{"hook_id": "Jon"}'
 

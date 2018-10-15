@@ -7,7 +7,7 @@ def handle(ctx, payload):
         raise Exception("Requires git secret")
     clone_url = secrets["vmcloneurl"]
     host = secrets["vcenterhost"]
-    name = payload.get["hook_id"]
+    name = payload["hook_id"]
     template = secrets["template"]
 
     clone_data = {'host': host, 'name': name, 'template': template}
