@@ -38,7 +38,9 @@ def handle(ctx, payload):
                     if "resourcepool" in entry:
                         respool = entry["resourcepool"]
                     if "poweron" in entry:
-                        poweron = entry["poweron"]                
+                        poweron = entry["poweron"]
+                    else:
+                        poweron = False
 
                     clone_data = {
                         'host': targethost, 
@@ -47,7 +49,8 @@ def handle(ctx, payload):
                         'datacenterName': targetdc,
                         'vmFolder': targetfolder,
                         'resourcePool': respool,
-                        'powerOn': poweron}
+                        'powerOn': poweron
+                        }
 
                     response = requests.post(
                         clone_url, 
