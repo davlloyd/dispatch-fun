@@ -24,25 +24,24 @@ dispatch create -f 2-secret-slack.yaml
 dispatch create -f 3-drivertype-vcenter.yaml
 dispatch create -f 4-driver-vcenter-pks.yaml
 
-# Create functions for slack posts
+# Create functions for slack, git and vmclone requests
 
-dispatch create function --image=nodejs-request slack-post-vm-message functions/slack-post-vm-general --handler=./slack_vm_general.js
-dispatch create function --image=nodejs-request slack-post-vm-deploy-message functions/slack-post-deploy-vm --handler=./slack_vm_being_deployed.js
 dispatch create function --image=python-vmomi clonevm functions/clonevm --handler=clonevm-web.handle --secret vsphere-pks
 dispatch create function --image=python-request slack-post-vm functions/slack-post --handler=slack_post.handle --secret slack
+dispatch create function --image=python-request git-vmrequest functions/git-vmrequest --handler=git-vmrequest.handle --secret vsphere
 
-# Publish the cloneVM API
+# Publish the cloneVM and Git-Request API
 
 dispatch create api --https-only --method POST --path /clonevm post-clonevm clonevm
+dispatch create api --https-only --method POST --path /git-requestvm post-gitvm git-vmrequest
 
 # Subscribe to the vm events
 
-dispatch create subscription --name vmCreatedSlack --event-type vm.being.created slack-post-vm-message --secret slack
-dispatch create subscription --name vmCloneSlack --event-type vm.clone slack-post-vm-message  --secret slack
+dispatch create subscription --name vmDeployedSlack --event-type vm.being.deployed slack-post-vm --secret slack
 dispatch create subscription --name vmPoweredOnSlack --event-type vm.poweredon slack-post-vm --secret slack
-dispatch create subscription --name vmPoweredOffSlack --event-type vm.poweredoff slack-post-vm-message --secret slack
-dispatch create subscription --name vmDeployedSlack --event-type vm.being.deployed slack-post-vm-deploy-message --secret slack
-dispatch create subscription --name vmDeployedSlack --event-type vm.being.deployed slack-post-vm-deploy-message --secret slack
+dispatch create subscription --name vmPoweredOffSlack --event-type vm.poweredoff slack-post-vm --secret slack
+dispatch create subscription --name vmCreatedSlack --event-type vm.being.created slack-post-vm --secret slack
+dispatch create subscription --name vmCloneSlack --event-type vm.clone slack-post-vm  --secret slack
 
 
 
