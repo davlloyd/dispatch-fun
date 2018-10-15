@@ -95,6 +95,7 @@ def handle(ctx, payload):
         port=port,
         sslContext=context)
     try:
+        comment = None
         content = si.RetrieveContent()
         template = get_obj(content, [vim.VirtualMachine], template_name)
         state = "unknown"
@@ -106,9 +107,10 @@ def handle(ctx, payload):
                 host_name, resource_pool,
                 power_on)
         else:
-            state = "template not found"
+            state = "error"
+            comment = "template not found"
         return {
-            "state": state
+            "state": state, "comment": comment, "clonespec": clonespec
         }
 
     finally:
