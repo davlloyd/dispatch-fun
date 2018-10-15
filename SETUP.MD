@@ -31,6 +31,9 @@ dispatch create function --image=nodejs-request slack-post-vm-deploy-message fun
 dispatch create function --image=python-vmomi clonevm functions/clonevm --handler=clonevm.handle --secret vsphere-pks
 dispatch create function --image=python-request slack-post-vm functions/slack-post --handler=slack_post.handle --secret slack
 
+# Publish the cloneVM API
+
+dispatch create api --https-only --method POST --path /clonevm post-clonevm clonevm
 
 # Subscribe to the vm events
 
@@ -47,7 +50,14 @@ dispatch create subscription --name vmDeployedSlack --event-type vm.being.deploy
 
 dispatch exec clonevm --wait --input='{"host": "sydscvvpksvc01.syddsc.local","name": "test-002","template": "ubuntu-1604-template"}' --secret vsphere-pks
 
+
 # Test Slack Webhook
 
 
 curl -X POST -H 'Content-type: application/json' --data '{"text":"Hello, World!"}' https://hooks.slack.com/services/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
+
+# Test Published API
+
+curl -k "https://jump.wwko2018.com:8443/dispatch/hello" -H "Content-Type: application/json" -d '{"name": "Jon", "place": "winterfell"}'
+
+curl -k "https://jump.wwko2018.com:8443/dispatch/clonevm" -H "Content-Type: application/json" -d '{"host": "sydscvvpksvc01.syddsc.local", "name": "gitvm-001", "template", "ubuntu-1604-template"}'

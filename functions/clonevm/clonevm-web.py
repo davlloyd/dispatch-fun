@@ -57,8 +57,8 @@ def clone_vm(
     clonespec.location = relospec
     clonespec.powerOn = power_on
 
-    print("cloning VM...")
-    print("clone spec: %s" % clonespec)
+    #print("cloning VM...")
+    #print("clone spec: %s" % clonespec)
     task = template.Clone(folder=destfolder, name=vm_name, spec=clonespec)
     return clonespec, task.info.state
 
@@ -106,7 +106,7 @@ def handle(ctx, payload):
                 host_name, resource_pool,
                 power_on)
         else:
-            print("template not found")
+            state = "template not found"
         return {
             "state": state
         }
