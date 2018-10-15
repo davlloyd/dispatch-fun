@@ -7,7 +7,7 @@ def handle(ctx, payload):
         raise Exception("Requires vcenter secret")
     clone_url = secrets["vmcloneurl"]
     host = secrets["vcenterhost"]
-    name =  = payload.get["name"]
+    name = payload.get["name"]
     template = secrets["template"]
 
     clone_data = {'host': host, 'name': name, 'template':, template}
