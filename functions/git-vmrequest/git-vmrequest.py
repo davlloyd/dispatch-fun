@@ -1,12 +1,6 @@
 import json
 import requests
 
-def vmrequest(gituser, repo, filename):
-    url = 'https://api.github.com/repos/{0}/{1}/contents/{2}'.format(gituser, repo, filename)
-    req = requests.get(url)
-    if req.status_code == 200:
-        req = req.json() 
-
 
 def handle(ctx, payload):
     secrets = ctx["secrets"]
@@ -26,8 +20,30 @@ def handle(ctx, payload):
             response = requests.get(file_url)
             if response.status_code == 200:
                 entry = response.json()
+
                 name = entry["name"]
-                clone_data = {'host': host, 'name': name, 'template': template}
+                if(entry["template"] != ""):
+                    sourcetemplate = entry["template"]
+                else:
+                    sourcetemplate = template
+                if(entry["targethost"] != ""):
+                    targethost = entry["targethost"]
+                else:
+                    targethost = host
+                targetdc = entry["dc"]
+                targetfolder = entry["vmfolder"]
+                respool = entry["resourcepool"]
+                poweron = entry["poweron"]                
+
+                clone_data = {
+                    'host': targethost, 
+                    'name': name, 
+                    'template': sourcetemplate,
+                    'datacenterName': targetdc,
+                    'vmFolder': targetfolder,
+                    'resourcePool': respool,
+                    'powerOn': poweron}
+
                 response = requests.post(
                     clone_url, 
                     data=json.dumps(clone_data),
