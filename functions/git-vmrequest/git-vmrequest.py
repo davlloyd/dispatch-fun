@@ -15,7 +15,7 @@ def handle(ctx, payload):
     clone_url = secrets["vmcloneurl"]
     host = secrets["vcenterhost"]
     template = secrets["template"]
-    repopath = payload["repository"][0]["full_name"]
+    repopath = payload["repository"]["full_name"]
 
     filerequests = payload["commits"][0]["added"]
 
