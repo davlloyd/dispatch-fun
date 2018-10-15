@@ -11,11 +11,11 @@ def handle(ctx, payload):
     vmName = metadata.get("vm_name");
     vmId = metadata.get("vm_id")
     message = payload.get("message");
-    postmessage = "\n{0}\nVM Name: {1}\nVM_ID: {2}".format(message, vmId, vmName)
+    postmessage = "\n{0}\nVM Name: {1}\nVM_ID: {2}".format(message, vmName, vmId)
  
     slack_data = {'text': postmessage}
   
-  
+
     response = requests.post(
         webhook_url, data=json.dumps(slack_data),
         headers={'Content-Type': 'application/json'}
