@@ -62,5 +62,5 @@ curl -X POST -H 'Content-type: application/json' --data '{"text":"Hello, World!"
 curl -k "https://jump.wwko2018.com:8443/dispatch/hello" -H "Content-Type: application/json" -d '{"name": "Jon", "place": "winterfell"}'
 
 
-curl -X POST -k "https://jump.wwko2018.com:8443/dispatch/git-requestvm" -H "Content-Type: application/json" -d '{"hook_id": "Jon"}'
+curl -X POST -k "https://jump.wwko2018.com:8443/dispatch/git-vmrequest" -H "Content-Type: application/json" -d '{"hook_id": "Jon"}'
 
