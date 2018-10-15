@@ -15,6 +15,7 @@ def handle(ctx, payload):
  
     slack_data = {'text': postmessage}
   
+  
     response = requests.post(
         webhook_url, data=json.dumps(slack_data),
         headers={'Content-Type': 'application/json'}
