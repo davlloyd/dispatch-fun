@@ -60,5 +60,6 @@ curl -X POST -H 'Content-type: application/json' --data '{"text":"Hello, World!"
 
 curl -k "https://jump.wwko2018.com:8443/dispatch/hello" -H "Content-Type: application/json" -d '{"name": "Jon", "place": "winterfell"}'
 
-curl -k "https://jump.wwko2018.com:8443/dispatch/clonevm" -H "Content-Type: application/json" -d '{"host": "sydscvvpksvc01.syddsc.local", "name": "gitvm-001", "template": "ubuntu-1604-template"}'
+
+
 
