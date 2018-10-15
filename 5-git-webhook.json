@@ -5,7 +5,7 @@
       "push"
     ],
     "config": {
-      "url": "https://jump.wwko2018.com:8443/dispatch/gitpush",
+      "url": "https://jump.wwko2018.com:8443/dispatch/git-vmrequest",
       "content_type": "json",
       "insecure_ssl": "1"
     }

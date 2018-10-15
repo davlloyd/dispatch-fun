@@ -5,9 +5,9 @@ def handle(ctx, payload):
     secrets = ctx["secrets"]
     if secrets is None:
         raise Exception("Requires vcenter secret")
-    clone_url = "https://192.168.192.38:443/dispatch/clonevm"
+    clone_url = secrets["vmcloneurl"]
     host = secrets["vcenterhost"]
-    name =  = payload.get("name")
+    name =  = payload.get["name"]
     template = "ubuntu-1604-template"
 
     clone_data = {'host': host, 'name': name, 'template':, template}
