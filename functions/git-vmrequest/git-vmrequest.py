@@ -24,16 +24,19 @@ def handle(ctx, payload):
         for filename in filerequests:
             file_url = 'https://raw.githubusercontent.com/{0}/master/{1}'.format(repopath, filename)
             response = requests.get(file_url)
-            entry = response.json()
-            name = entry["name"]
-            clone_data = {'host': host, 'name': name, 'template': template}
-            response = requests.post(
-                clone_url, 
-                data=json.dumps(clone_data),
-                headers={'Content-Type': 'application/json'},
-                verify=False
-            )
-            vmlist += "{0}/n".format(clone_data)
+            if response.status_code == 200:
+                entry = response.json()
+                name = entry["name"]
+                clone_data = {'host': host, 'name': name, 'template': template}
+                response = requests.post(
+                    clone_url, 
+                    data=json.dumps(clone_data),
+                    headers={'Content-Type': 'application/json'},
+                    verify=False
+                )
+                vmlist += "{0}/n".format(clone_data)
+            else:
+                print(file_url)
     else:
         return {"status": "no new requests"}
 
