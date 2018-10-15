@@ -13,7 +13,9 @@ def handle(ctx, payload):
     clone_data = {'host': host, 'name': name, 'template': template}
 
     response = requests.post(
-        clone_url, data=json.dumps(clone_data),
-        headers={'Content-Type': 'application/json'}
+        clone_url, 
+        data=json.dumps(clone_data),
+        headers={'Content-Type': 'application/json'},
+        verify=False
     )
     return {"status": response.status_code, "data": clone_data}
