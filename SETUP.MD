@@ -49,7 +49,7 @@ dispatch create subscription --name vmCloneSlack --event-type vm.clone slack-pos
 
 dispatch exec clonevm --wait --input='{"host": "sydscvvpksvc01.syddsc.local","name": "test-008","template": "ubuntu-1604-template"}' --secret vsphere-pks
 
-dispatch exec git-vmrequest --wait --input='{"hook_id": "test001"}' --secret vsphere-pks
+dispatch exec git-vmrequest --wait --input='{"repository": [{"full_name": "davlloyd/dispatch-cpm"}], "commits": [ {"added": [ "request-4.json" ]}]}' --secret vsphere-pks
 
 
 # Test Slack Webhook
