@@ -7,8 +7,13 @@ def handle(ctx, payload):
     if secrets is None:
         raise Exception("Requires slack secret")
     webhook_url = secrets["slack_url"]
-    slack_data = {'text': "Incoming from Dispatch"}
-
+    vmName = payload.get("vm_name");
+    vmId = payload.get("vm_id")
+    message = payload.get("message");
+    postmessage = "\n{0}\nVM Name: {1}\nVM_ID: {2}".format(message, vmId, vmName)
+ 
+    slack_data = {'text': postmessage}
+  
     response = requests.post(
         webhook_url, data=json.dumps(slack_data),
         headers={'Content-Type': 'application/json'}

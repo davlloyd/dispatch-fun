@@ -1,0 +1,12 @@
+{
+    "name": "post-dispatch",
+    "active": true,
+    "events": [
+      "push"
+    ],
+    "config": {
+      "url": "https://jump.wwko2018.com:8443/dispatch/gitpush",
+      "content_type": "json",
+      "insecure_ssl": "1"
+    }
+  }
