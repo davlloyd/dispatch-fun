@@ -16,4 +16,4 @@ def handle(ctx, payload):
         clone_url, data=json.dumps(clone_data),
         headers={'Content-Type': 'application/json'}
     )
-    return {"status": response.status_code}
+    return {"status": response.status_code, "body": clone_data}
