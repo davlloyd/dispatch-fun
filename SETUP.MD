@@ -28,7 +28,7 @@ dispatch create -f 4-driver-vcenter-pks.yaml
 
 dispatch create function --image=python-vmomi clonevm functions/clonevm --handler=clonevm-web.handle --secret vsphere-pks
 dispatch create function --image=python-request slack-post-vm functions/slack-post --handler=slack_post.handle --secret slack
-dispatch create function --image=python-request git-vmrequest functions/git-vmrequest --handler=git-vmrequest.handle --secret vsphere
+dispatch create function --image=python-request git-vmrequest functions/git-vmrequest --handler=git-vmrequest.handle --secret git
 
 # Publish the cloneVM and Git-Request API
 
