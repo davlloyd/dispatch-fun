@@ -21,8 +21,8 @@ def handle(ctx, payload):
 
     vmlist = ""
     if (len(filerequests)):
-        for file in filerequests:
-            file_url = 'https://raw.githubusercontent.com/{0}/master/{2}'.format(repopath, file)
+        for filename in filerequests:
+            file_url = 'https://raw.githubusercontent.com/{0}/master/{1}'.format(repopath, filename)
             response = requests.get(file_url)
             entry = response.json()
             name = entry["name"]
