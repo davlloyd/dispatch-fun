@@ -49,7 +49,7 @@ dispatch create subscription --name vmCloneSlack --event-type vm.clone slack-pos
 
 dispatch exec clonevm --wait --input='{"host": "sydscvvpksvc01.syddsc.local","name": "test-008","template": "ubuntu-1604-template"}' --secret vsphere-pks
 
-dispatch exec git-vmrequest --wait --input='{"repository": [{"full_name": "davlloyd/dispatch-cmp"}], "commits": [ {"added": [ "request-4.json" ]}]}' --secret vsphere-pks
+dispatch exec git-vmrequest --wait --input='{"repository": [{"full_name": "davlloyd/dispatch-cmp"}], "commits": [ {"added": [ "request-8.json" ]}]}' --secret vsphere-pks
 
 
 # Test Slack Webhook
@@ -62,5 +62,5 @@ curl -X POST -H 'Content-type: application/json' --data '{"text":"Hello, World!"
 curl -k "https://jump.wwko2018.com:8443/dispatch/hello" -H "Content-Type: application/json" -d '{"name": "Jon", "place": "winterfell"}'
 
 
-curl -X POST -k "https://jump.wwko2018.com:8443/dispatch/git-vmrequest" -H "Content-Type: application/json" -d '{"repository": [{"full_name": "davlloyd/dispatch-cmp"}], "commits": [ {"added": [ "request-4.json" ]}]}'
+curl -X POST -k "https://jump.wwko2018.com:8443/dispatch/git-vmrequest" -H "Content-Type: application/json" -d '{"repository": [{"full_name": "davlloyd/dispatch-cmp"}], "commits": [ {"added": [ "request-8.json" ]}]}'
 

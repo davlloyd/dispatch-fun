@@ -23,18 +23,22 @@ def handle(ctx, payload):
                     entry = response.json()
 
                     name = entry["name"]
-                    if(entry["template"] != ""):
+                    if "template" in entry:
                         sourcetemplate = entry["template"]
                     else:
                         sourcetemplate = template
-                    if(entry["targethost"] != ""):
+                    if "targethost" in entry:
                         targethost = entry["targethost"]
                     else:
                         targethost = host
-                    targetdc = entry["dc"]
-                    targetfolder = entry["vmfolder"]
-                    respool = entry["resourcepool"]
-                    poweron = entry["poweron"]                
+                    if "dc" in entry:
+                        targetdc = entry["dc"]
+                    if "vmfolder" in entry:
+                        targetfolder = entry["vmfolder"]
+                    if "resourcepool" in entry:
+                        respool = entry["resourcepool"]
+                    if "poweron" in entry:
+                        poweron = entry["poweron"]                
 
                     clone_data = {
                         'host': targethost, 
