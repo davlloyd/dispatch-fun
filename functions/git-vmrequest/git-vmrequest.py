@@ -10,7 +10,7 @@ def handle(ctx, payload):
     name = payload.get["name"]
     template = secrets["template"]
 
-    clone_data = {'host': host, 'name': name, 'template':, template}
+    clone_data = {'host': host, 'name': name, 'template': template}
   
 
     response = requests.post(
