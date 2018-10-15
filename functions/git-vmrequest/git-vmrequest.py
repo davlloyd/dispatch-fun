@@ -8,7 +8,7 @@ def handle(ctx, payload):
     clone_url = secrets["vmcloneurl"]
     host = secrets["vcenterhost"]
     name =  = payload.get["name"]
-    template = "ubuntu-1604-template"
+    template = secrets["template"]
 
     clone_data = {'host': host, 'name': name, 'template':, template}
   
