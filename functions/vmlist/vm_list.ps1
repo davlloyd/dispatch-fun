@@ -1,8 +1,8 @@
 Import-Module PowerCLI.ViCore
 
 function handle($context, $payload) {
-    [void](Set-PowerCLIConfiguration -InvalidCertificateAction ignore -Confirm:$false)
-
+    [void](Set-PowerCLIConfiguration -DefaultVIServerMode multiple -InvalidCertificateAction ignore -Confirm:$false)
+ 
     $username = $context.secrets.username
     $password = $context.secrets.password
     $hostname = $context.secrets.vcenterhost
