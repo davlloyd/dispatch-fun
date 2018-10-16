@@ -111,7 +111,7 @@ def handle(ctx, payload):
             "state": state, 
             "comment": comment, 
             "vm": name, 
-            "template": template, 
+            "template": template_name, 
             "dc": dc_name,
             "respool": resource_pool
         }
