@@ -1,8 +1,7 @@
 kind: Function
 name: vmlist
+sourcePath: 'functions/vmlist/vm_list.ps1'
 image: powershell-powercli
-sourcepath: 'functions/vmlist/vm_list.ps1'
-handler: vm_list.ps1::handle
 schema: {}
 tags:
   - key: location
