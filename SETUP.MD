@@ -45,11 +45,14 @@ dispatch create subscription --name vmCloneSlack --event-type vm.clone slack-pos
 
 
 # Powershell demo
-## Create image 
 
-dispatch create image powershell-vmware powershell-base --runtime-deps ./requirements-powercli.psd1
+dispatch create image powershell-powercli powershell-base --runtime-deps ./requirements-powercli.psd1
 dispatch create function vmlist ./functions/vmlist/vm_list.ps1 --image=powershell-powercli --handler=vm_list.ps1::handle --secret vsphere-pks
 dispatch exec vmlist --wait --secret vsphere-pks
+
+
+#Python Debug Demo
+dispatch create function --image=python3 hello-py functions/hello-py --handler=hello-py.handle
 
 # Test Functions
 
