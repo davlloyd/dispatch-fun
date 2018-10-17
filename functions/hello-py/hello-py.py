@@ -1,5 +1,5 @@
 def handle(ctx, payload):
-    name = "Noone"
+    name = "Noone
     place = "Nowhere"
     if payload:
         name = payload.get("name", name)
