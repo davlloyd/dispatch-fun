@@ -1,11 +1,9 @@
 kind: Function
 name: vmlist
 image: powershell-powercli
-source: "vm_list.ps1"
-sourceurl: ""
-sourcepath: "./functions/vmlist/"
+source: vm_list.ps1
+sourcepath: ./functions/vmlist/
 handler: vm_list.ps1::handle
-secrets: []
 tags:
   - key: location
     value: DSC
