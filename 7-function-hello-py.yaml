@@ -1,0 +1,8 @@
+kind: Function
+name: hello-py
+sourcePath: 'functions/hello-py/hello-py.py'
+image: python3
+schema: {}
+tags:
+  - key: location
+    value: DSC
