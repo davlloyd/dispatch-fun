@@ -1,0 +1,19 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: ci-storage
+  annotations:
+    storageclass.kubernetes.io/is-default-class: true
+provisioner: kubernetes.io/vsphere-volume
+parameters:
+  diskformat: thin
+
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata: 
+  name: fast
+provisioner: kubernetes.io/vsphere-volume
+parameters: 
+  datastore: VSANDatastore
+  diskformat: thin
+  fstype: ext3

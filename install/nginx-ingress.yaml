@@ -1,0 +1,14 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: nginx
+  namespace: default
+spec:
+  rules:
+  - host: nginx.pks-in-dev.syddsc.local
+    http:
+      paths:
+      - path: /.*
+        backend:
+          serviceName: nginx
+          servicePort: 80
