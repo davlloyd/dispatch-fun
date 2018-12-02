@@ -56,7 +56,7 @@ dispatch create function --image=python3 hello-py functions/hello-py --handler=h
 
 # Test Functions
 
-dispatch exec clonevm --wait --input='{"host": "sydscvvcloudvc01.syddsc.local","name": "test-007","template": "ubuntu-1604-template-agent"}' --secret vsphere-pks
+dispatch exec clonevm --wait --input='{"host": "sydscvvcloudvc01.syddsc.local","name": "test-026","template": "ubuntu-1604-template-agent"}' --secret vsphere-pks
 
 dispatch exec git-vmrequest --wait --input='{"repository": {"full_name": "davlloyd/dispatch-cmp"}, "commits": [ {"added": [ "request-8.json" ]}]}' --secret vsphere-pks
 
@@ -70,6 +70,8 @@ curl -X POST -H 'Content-type: application/json' --data '{"text":"Hello, World!"
 
 curl -k "https://jump.wwko2018.com:8443/dispatch/hello" -H "Content-Type: application/json" -d '{"name": "Jon", "place": "winterfell"}'
 
+curl -k "https://192.168.192.83:443/dispatch/hello" -H "Content-Type: application/json" -d '{"name": "Jon", "place": "winterfell"}'
 
-curl -X POST -k "https://jump.wwko2018.com:8443/dispatch/git-vmrequest" -H "Content-Type: application/json" -d '{"repository": [{"full_name": "davlloyd/dispatch-cmp"}], "commits": [ {"added": [ "request-9.json" ]}]}'
+
+curl -X POST -k "https://jump.wwko2018.com:8443/dispatch/git-vmrequest" -H "Content-Type: application/json" -d '{"repository": [{"full_name": "davlloyd/dispatch-cmp"}], "commits": [ {"added": [ "request-26.json" ]}]}'
 
