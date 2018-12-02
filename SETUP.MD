@@ -56,7 +56,7 @@ dispatch create function --image=python3 hello-py functions/hello-py --handler=h
 
 # Test Functions
 
-dispatch exec clonevm --wait --input='{"host": "sydscvvpksvc01.syddsc.local","name": "test-008","template": "ubuntu-1604-template"}' --secret vsphere-pks
+dispatch exec clonevm --wait --input='{"host": "sydscvvcloudvc01.syddsc.local","name": "test-007","template": "ubuntu-1604-template-agent"}' --secret vsphere-pks
 
 dispatch exec git-vmrequest --wait --input='{"repository": {"full_name": "davlloyd/dispatch-cmp"}, "commits": [ {"added": [ "request-8.json" ]}]}' --secret vsphere-pks
 
