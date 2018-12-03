@@ -14,8 +14,6 @@ def handle(ctx, payload):
         vmId = metadata.get("vm_id")
         postmessage = "\n{0}\nVM Name: {1}\nVM_ID: {2}".format(message, vmName, vmId)
     else:
-        vmName = ""
-        vmId = 
         postmessage = "\n{0}\nPayload: {1}".format(message, str(payload))
  
     slack_data = {'text': postmessage}
