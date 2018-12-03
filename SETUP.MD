@@ -37,11 +37,12 @@ dispatch create api --https-only --method POST --path /git-vmrequest post-gitvm 
 
 # Subscribe to the vm events
 
-dispatch create subscription --name vmDeployedSlack --event-type vm.being.deployed slack-post-vm --secret slack
-dispatch create subscription --name vmPoweredOnSlack --event-type vm.poweredon slack-post-vm --secret slack
-dispatch create subscription --name vmPoweredOffSlack --event-type vm.poweredoff slack-post-vm --secret slack
-dispatch create subscription --name vmCreatedSlack --event-type vm.being.created slack-post-vm --secret slack
-dispatch create subscription --name vmCloneSlack --event-type vm.clone slack-post-vm  --secret slack
+dispatch create subscription --name vmDeployedSlack --event-type="vm.being.deployed" slack-post-vm --secret slack
+dispatch create subscription --name vmPoweredOnSlack --event-type="vm.powered.on" slack-post-vm --secret slack
+dispatch create subscription --name vmPoweredOffSlack --event-type="vm.powered.off" slack-post-vm --secret slack
+dispatch create subscription --name vmCreatedSlack --event-type="vm.being.created" slack-post-vm --secret slack
+dispatch create subscription --name vmCloneSlack --event-type="vm.clone" slack-post-vm  --secret slack
+dispatch create subscription --name vmEventSlack --event-type="vm" slack-post-vm  --secret slack
 
 
 # Powershell demo

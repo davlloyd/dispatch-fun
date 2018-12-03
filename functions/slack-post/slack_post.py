@@ -1,4 +1,3 @@
-
 import json
 import requests
 
@@ -11,7 +10,11 @@ def handle(ctx, payload):
     vmName = metadata.get("vm_name");
     vmId = metadata.get("vm_id")
     message = payload.get("message");
-    postmessage = "\n{0}\nVM Name: {1}\nVM_ID: {2}".format(message, vmName, vmId)
+    
+    try:
+        postmessage = "\n{0}\nVM Name: {1}\nVM_ID: {2}".format(message, vmName, vmId)
+    except:
+        postmessage = str(payload)
  
     slack_data = {'text': postmessage}
   
