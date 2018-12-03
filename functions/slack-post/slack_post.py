@@ -7,18 +7,16 @@ def handle(ctx, payload):
         raise Exception("Requires slack secret")
     webhook_url = secrets["slack_url"]
     metadata = payload.get("metadata")
+    message = payload.get("message");
+
     if metadata is not None:
         vmName = metadata.get("vm_name");
         vmId = metadata.get("vm_id")
+        postmessage = "\n{0}\nVM Name: {1}\nVM_ID: {2}".format(message, vmName, vmId)
     else:
         vmName = ""
-        vmId = ""
-    message = payload.get("message");
-
-    try:
-        postmessage = "\n{0}\nVM Name: {1}\nVM_ID: {2}".format(message, vmName, vmId)
-    except:
-        postmessage = str(payload)
+        vmId = 
+        postmessage = "\n{0}\nPayload: {1}".format(message, str(payload))
  
     slack_data = {'text': postmessage}
   
