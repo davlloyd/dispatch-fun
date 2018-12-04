@@ -1,6 +1,6 @@
 kind: Driver
-name: vcenter-dev
-type: vcenter
+name: vcenter-cloud
+type: vcenter-dev
 secrets:
   - vsphere-pks
 tags:

@@ -2,7 +2,7 @@ kind: Driver
 name: vcenter-pks
 type: vcenter
 secrets:
-  - vsphere-pks
+  - vsphere-cloud
 tags:
   - key: location
     value: DSC

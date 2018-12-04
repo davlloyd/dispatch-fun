@@ -1,7 +1,7 @@
 kind: DriverType
 image: davlloyd/dispatch-events-vcenter
 expose: false
-name: vcenter
+name: vcenter-dev
 tags:
   - key: location
     value: DSC
