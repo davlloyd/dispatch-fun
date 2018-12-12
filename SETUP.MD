@@ -6,6 +6,8 @@
 - vmomi image is for vsphere functions
 - request module added to nodejs for slack
 
+dispatch create seed-images
+
 dispatch create base-image python3-base dispatchframework/python3-base --language python3
 dispatch create image python3 python3-base
 dispatch create image python-vmomi python3-base --runtime-deps ./requirements-vmomi.txt
@@ -22,12 +24,12 @@ dispatch create -f 2-secret-slack.yaml
 
 # Define driver for vcenter
 dispatch create -f 3-drivertype-vcenter.yaml
-dispatch create -f 4-driver-vcenter-pks.yaml
+dispatch create -f 4-driver-vcenter-dsc.yaml   (or 4.1 for personal repo version)
 
 # Create functions for slack, git and vmclone requests
 
-dispatch create function --image=python-vmomi clonevm functions/clonevm --handler=clonevm-web.handle --secret vsphere-pks
-dispatch create function --image=python-request slack-post-vm functions/slack-post --handler=slack_post.handle --secret slack
+dispatch create function --image=python-vmomi clonevm functions/clonevm --handler=clonevm-web.handle --secret vsphere-cloud
+dispatch create function --image=python-request slack-post-vm functions/slack-post --handler=slack_post.handle --secret slack,vsphere-cloud
 dispatch create function --image=python-request git-vmrequest functions/git-vmrequest --handler=git-vmrequest.handle --secret git
 
 # Publish the cloneVM and Git-Request API
@@ -47,11 +49,12 @@ dispatch create subscription --name vmReconfiguredSlack --event-type="vm.reconfi
 dispatch create subscription --name vmCreatedSlack --event-type="vm.being.created" slack-post-vm --secret slack
 
 
+
 # Powershell demo
 
 dispatch create image powershell-powercli powershell-base --runtime-deps ./requirements-powercli.psd1
-dispatch create function vmlist ./functions/vmlist/vm_list.ps1 --image=powershell-powercli --handler=vm_list.ps1::handle --secret vsphere-pks
-dispatch exec vmlist --wait --secret vsphere-pks
+dispatch create function vmlist ./functions/vmlist/vm_list.ps1 --image=powershell-powercli --handler=vm_list.ps1::handle --secret vsphere-cloud
+dispatch exec vmlist --wait --secret vsphere-cloud
 
 
 #Python Debug Demo
@@ -59,9 +62,9 @@ dispatch create function --image=python3 hello-py functions/hello-py --handler=h
 
 # Test Functions
 
-dispatch exec clonevm --wait --input='{"host": "sydscvvcloudvc01.syddsc.local","name": "test-026","template": "ubuntu-1604-template-agent"}' --secret vsphere-pks
+dispatch exec clonevm --wait --input='{"host": "sydscvvcloudvc01.syddsc.local","name": "test-026","template": "ubuntu-1604-template-agent"}' --secret vsphere-cloud
 
-dispatch exec git-vmrequest --wait --input='{"repository": {"full_name": "davlloyd/dispatch-cmp"}, "commits": [ {"added": [ "request-8.json" ]}]}' --secret vsphere-pks
+dispatch exec git-vmrequest --wait --input='{"repository": {"full_name": "davlloyd/dispatch-cmp"}, "commits": [ {"added": [ "request-8.json" ]}]}' --secret vsphere-cloud
 
 
 # Test Slack Webhook

@@ -5,7 +5,7 @@ import requests
 def handle(ctx, payload):
     secrets = ctx["secrets"]
     if secrets is None:
-        raise Exception("Requires git secret")
+        raise Exception("Requires git and vsphere secrets")
     clone_url = secrets["vmcloneurl"]
     host = secrets["vcenterhost"]
     template = secrets["template"]

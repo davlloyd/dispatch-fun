@@ -1,5 +1,5 @@
 kind: Driver
-name: vcenter-pks
+name: vcenter-cloud
 type: vcenter
 secrets:
   - vsphere-cloud
